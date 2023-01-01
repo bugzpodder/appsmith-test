@@ -1,0 +1,16 @@
+{
+  "unpublishedCollection": {
+    "name": "JSObject1",
+    "pageId": "pgAdmin",
+    "pluginId": "js-plugin",
+    "pluginType": "JS",
+    "actions": [],
+    "archivedActions": [],
+    "body": "export default {\n\tgetSchemas: () => {\n\t\treturn(get_schemas.data.map(s => ({value: s.schema_name, label: s.schema_name})))\n\t},\n\n\tbarChart: async () => {\n\t\tawait tablesInSchemas.run();\n\t\tconst dataSource = {\n\t\t\tchart: {\n\t\t\t\txaxisname: \"Schema\",\n\t\t\t\tyaxisname: \"Number of Tables\",\n\t\t\t\ttheme: \"fusion\",\n\t\t\t\tpalettecolors: \"#5D62B5\",\n\t\t\t},\n\t\t\tdata: tablesInSchemas.data\t\t};\n\t\treturn ({\n\t\t\ttype: \"bar2d\",\n\t\t\tdataFormat: 'json',\n\t\t\tdataSource\n\t\t})\n\t},\n\n\n\n\tgetDonutChart: () => {\n\t\tconst dataSource = {\n\t\t\tchart: {\n\t\t\t\tcaption: \"Variation of datatypes in the selected table\",\n\t\t\t\tshowpercentvalues: \"1\",\n\t\t\t\tdefaultcenterlabel: \"Hover\",\n\t\t\t\tdecimals: \"1\",\n\t\t\t\tcenterlabel: \"$label: $value\",\n\t\t\t\ttheme: \"fusion\",\n\t\t\t\tshowLegend: \"0\",\n\t\t\t\tshowLabels: \"0\",\n\t\t\t\tshowValues:\"0\"\n\t\t\t},\n\t\t\tdata: dtypesinTable.data\t\t};\n\t\treturn ({\n\t\t\ttype: \"doughnut2d\",\n\t\t\tdataFormat: 'json',\n\t\t\tdataSource\n\t\t})\n\t},\n\t\n\tonPageLoad: async() => {\n\t\tget_tables.run();\n\t\tdtypesinTable.run();\n\t\tget_columns.run();\n\t}\n}",
+    "variables": [],
+    "userPermissions": []
+  },
+  "id": "pgAdmin_JSObject1",
+  "deleted": false,
+  "gitSyncId": "62eab996b2f8027edfbe2db2_62eac237b2f8027edfbe3073"
+}
